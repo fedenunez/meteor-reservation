@@ -1,0 +1,88 @@
+/* CSS declarations go here */
+/* CSS declarations go here */
+body {
+  font-family: sans-serif;
+  background-color: #110000;
+  background-image: linear-gradient(to bottom, #220000, #000000 100%);
+  background-attachment: fixed;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  padding: 0;
+  margin: 0;
+
+  font-size: 14px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 100%;
+  background: white;
+}
+
+header {
+  background: red;
+  background-image: linear-gradient(to bottom, #990000, #aa0000 100%);
+  padding: 20px 15px 15px 15px;
+  position: relative;
+}
+
+table {
+  margin: 1ex auto;
+}
+
+#login-buttons {
+  display: block;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin: 0;
+  margin-bottom: 10px;
+  display: inline-block;
+  margin-right: 1em;
+}
+
+form {
+  margin-top: 10px;
+  margin-bottom: -10px;
+  position: relative;
+}
+
+input {
+  box-sizing: border-box;
+  padding: 10px 0;
+  background: transparent;
+  width: 100%;
+  padding: 8px 8px;
+  font-size: 1em;
+}
+
+input:focus{
+  outline: 0;
+}
+table td {
+  border: 1px solid grey;
+  text-align: center;
+  margin: 0;
+}
+
+table tr.reserved {
+  opacity: .9;
+  background: #f0f0f0; 
+}
+a { 
+  display: inline-block; 
+  min-width: 4ex; 
+  padding: .5ex; 
+  text-align: center; 
+  background: #BBB; 
+  color: white; 
+  text-decoration: none;
+  margin: 0 .5ex;
+}
