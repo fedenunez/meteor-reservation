@@ -6,10 +6,10 @@
   <table>
     <tr>
       <th>Frutera</th>
-      <th>Estado</th>
-      <th>Usuario</th>
-      <th>Desde</th>
-      <th>Hasta</th>
+      <th>State</th>
+      <th>User</th>
+      <th>Since</th>
+      <th>Expires in</th>
       <th>Actions</th>
     </tr>
     <tr  ng-repeat="frutera in fruteras | orderBy:'ip'" ng-class="frutera.state">
@@ -17,11 +17,12 @@
       <td> {{frutera.state}} </td>
       <td><input ng-model="frutera.usedBy" type="text" ng-change="update(frutera)"/> </td>
       <td>{{frutera.since | date:'medium'}}</td>
-      <td>{{frutera.until | date:'medium'}}</td>
+      <td title="La reserva es valida hasta: {{frutera.until | date:'medium'}}">{{(frutera.until - date)/1000/60 | duration}}</td>
       <td>
         <a href="" ng-click="clean(frutera)" tooltip="Clean" title="Clean reservation">C</a> 
         <a href="" ng-click="increase(frutera,+2)" title="Add 2 hour">+2</a> 
         <a href="" ng-click="increase(frutera,+8)" title="Add 8 hour">+8</a>
+        <a href="" ng-click="increase(frutera,+24)" title="Add 8 hour">+24</a>
       </td>
     </tr>
   </table>

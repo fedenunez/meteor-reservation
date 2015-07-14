@@ -1,5 +1,6 @@
 // model definition
 Fruteras = new Mongo.Collection("fruteras")
+Logs = new Mongo.Collection("log")
 
 // the cliente
 if (Meteor.isClient) {
@@ -7,6 +8,34 @@ if (Meteor.isClient) {
     // This code only runs on the client
     angular.module("simple-reservation",['angular-meteor']);
 
+    function onReady() {
+      angular.bootstrap(document, ['simple-reservation']);
+    }
+
+    if (Meteor.isCordova)
+      angular.element(document).on("deviceready", onReady);
+    else
+      angular.element(document).ready(onReady);
+
+    // simple filter to show minutes in a human readable forme
+    angular.module("simple-reservation").filter('duration', function() {
+      return function(input) {
+        var output = '';
+        if (0 < input && input < 60) {
+         output = Math.floor(input) + 'mins'; 
+        } else if (60 <= input && input < 24*60) {
+         output = Math.floor(input/60*10)/10 + 'hrs'; 
+        } else if (24*60 <= input && input < 24*30*60) {
+         output = Math.floor(input/60/24*10)/10 + 'days'; 
+        } else if (24*30 == input) {
+         output = Math.floor(input/60/24/30*10)/10 + 'month'; 
+        } else if (24*30 < input) {
+         output = Math.floor(input/60/24/30) + 'months'; 
+        }
+        return output;
+      };
+    });
+      
     // app controller
     angular.module("simple-reservation").controller("ReservationListCtrl", ['$scope','$meteor','$interval',
       function($scope, $meteor, $interval){
@@ -36,7 +65,11 @@ if (Meteor.isClient) {
       // scope actions ===============================
       $scope.update = function(frutera) {
         frutera.since = new Date();
-        frutera.until = (new Date()).setHours( frutera.since.getHours() + 1 );
+	var until = new Date( frutera.until );
+        // it should be reserved at least for one hour
+        if (frutera.since >= frutera.until) {
+	  frutera.until = (new Date()).setHours( frutera.since.getHours() + 1 );
+        }
       }
 
       $scope.clean = function(frutera) {
