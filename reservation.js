@@ -30,7 +30,7 @@ if (Meteor.isClient) {
         } else if (24*30 == input) {
          output = Math.floor(input/60/24/30*10)/10 + 'month'; 
         } else if (24*30 < input) {
-         output = Math.floor(input/60/24/30) + 'months'; 
+         output = Math.floor(input/60/24/30*10)/10 + 'months'; 
         }
         return output;
       };
