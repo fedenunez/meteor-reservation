@@ -13,7 +13,10 @@
       <th>Actions</th>
     </tr>
     <tr  ng-repeat="frutera in fruteras | orderBy:'ip'" ng-class="frutera.state">
-      <td>{{frutera.ip}}</td>
+      <td> 
+        <a ng-show="frutera.ip !=  '.61'" ng-href="http://192.168.42.{{frutera.ip}}">{{frutera.ip}}</a>
+        <a ng-hide="frutera.ip !=  '.61'" ng-href="http://192.168.0{{frutera.ip}}">{{frutera.ip}}</a>
+      </td>
       <td> {{frutera.state}} </td>
       <td><input ng-model="frutera.usedBy" type="text" ng-change="update(frutera)"/> </td>
       <td>{{frutera.since | date:'medium'}}</td>
